@@ -1,0 +1,50 @@
+
+@font-face {
+    font-family: fzxy;
+    src: url('/css/fonts/fzxy.ttf');
+    font-weight:100;
+}
+@font-face {
+    font-family: fzltcxh;
+    src: url('/css/fonts/fzltcx.ttf');
+    font-weight:100;
+}
+
+body {
+    font-family: fzxy;
+    font-size: 30px;
+    color: #999999;
+    font-weight: 200;
+}
+
+.gradM {
+    background: -webkit-linear-gradient(left top, #8c8386 , #e5836c);
+    background: -o-linear-gradient(bottom right, #8c8386, #e5836c);
+    background: -moz-linear-gradient(bottom right, #8c8386, #e5836c);
+    background: linear-gradient(to bottom right, #8c8386 , #e5836c);
+    padding-top: 20px;
+}
+
+.back{
+    background-color: #eeeeee;
+    height:100px;
+}
+
+.line{
+    color: #000000;
+}
+
+.nav{
+    color:#56c5a8;
+    font-family: '微软雅黑';
+    font-size:30px;
+}
+
+.dis{
+    display: inline-block;
+    text-align: center;
+}
+
+.bottom{
+    margin-bottom: -5px;
+}

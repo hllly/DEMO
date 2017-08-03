@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.demo.dao.LUserDao" >
+    <resultMap id="BaseResultMap" type="com.demo.pojo.LUser" >
+        <id column="u_id" property="u_id" jdbcType="INTEGER" />
+        <result column="u_nick" property="u_nick" jdbcType="VARCHAR" />
+        <result column="u_pwd" property="u_pwd" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        u_id,u_nick,u_pwd
+    </sql>
+
+    <select id="selectUserByUid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from luser_t
+        where u_id = #{u_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectUserByNick" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from luser_t
+        where u_nick = #{u_nick,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="addUser" parameterType="com.demo.pojo.LUser" >
+        insert into luser_t (u_nick,u_pwd)
+        values (#{0,jdbcType=VARCHAR},#{1,jdbcType=VARCHAR})
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

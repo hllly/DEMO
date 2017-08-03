@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <context:annotation-config/>
+
+    <!-- 自动扫描基础包-->
+    <context:component-scan base-package="com.demo" />
+
+    <!-- 引入jdbc配置文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:ssm/jdbc.properties" />
+    </bean>
+
+    <!--使用dbcp2创建jdbc数据库连接池并配置相关参数-->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${driver}" />
+        <property name="url" value="jdbc:mysql://192.168.0.106:3306/demo" />
+        <property name="username" value="root" />
+        <property name="password" value="QWE@qwe123!!" />
+        <property name="initialSize" value="${initialSize}"></property>
+        <property name="maxIdle" value="${maxIdle}"></property>
+        <property name="minIdle" value="${minIdle}"></property>
+    </bean>
+
+    <!-- spring和MyBatis整合，引入mapper文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath:mapping/*.xml"></property>
+    </bean>
+
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="basePackage" value="com.demo.dao" ></property>
+    </bean>
+
+    <!-- jdbc事务管理-->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+</beans>
+
+

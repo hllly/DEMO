@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.demo.dao.MappingURDao" >
+    <resultMap id="BaseResultMap" type="com.demo.pojo.MappingUR" >
+        <result column="u_id" property="u_id" jdbcType="INTEGER" />
+        <result column="r_id" property="r_id" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        r_id,p_id
+    </sql>
+
+    <select id="selectURByRid"  parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from mapping_ur
+        where r_id = #{r_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectURByUid"  parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from mapping_ur
+        where u_id = #{u_id,jdbcType=INTEGER}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
